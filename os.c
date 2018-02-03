@@ -17,6 +17,8 @@ tcbType tcbs[NUMTHREADS];
 tcbType *RunPt;
 int32_t Stacks[NUMTHREADS][STACKSIZE];
 uint32_t Counter=0;
+uint32_t mail;
+uint32_t mailFlag;
 
 typedef struct event{
 	void (*task)(void);
@@ -37,6 +39,8 @@ void OS_Init(void){
   BSP_Clock_InitFastest();// set processor clock to fastest speed
   // initialize any global variables as needed
   //***YOU IMPLEMENT THIS FUNCTION*****
+  OS_MailBox_Init();
+  
 
 }
 
@@ -210,7 +214,8 @@ void OS_Signal(int32_t *semaPt){
 // Outputs: none
 void OS_MailBox_Init(void){
   // include data field and semaphore
-  //***YOU IMPLEMENT THIS FUNCTION*****
+  mail=0;
+  OS_InitSemaphore(&mailFlag,0);
 
 }
 
@@ -221,7 +226,10 @@ void OS_MailBox_Init(void){
 // Outputs: none
 // Errors: data lost if MailBox already has data
 void OS_MailBox_Send(uint32_t data){
-  //***YOU IMPLEMENT THIS FUNCTION*****
+ 
+  mail=data;
+  OS_Signal(&mailFlag);
+ 
 
 }
 
@@ -234,7 +242,8 @@ void OS_MailBox_Send(uint32_t data){
 // Outputs: data retreived
 // Errors:  none
 uint32_t OS_MailBox_Recv(void){ uint32_t data;
-  //***YOU IMPLEMENT THIS FUNCTION*****
+  OS_Wait(&mailFlag);
+  data=mail;
   return data;
 }
 

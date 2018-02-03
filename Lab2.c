@@ -169,6 +169,7 @@ enum state AlgorithmState = LookingForMax;
                             // basic step counting algorithm is based on a forum post from
                             // http://stackoverflow.com/questions/16392142/android-accelerometer-profiling/16539643#16539643
 #define SOUND_MAX 900
+
 #define SOUND_MIN 300
 #define LIGHT_MAX 200000
 #define LIGHT_MIN 0
