@@ -39,7 +39,7 @@ void OS_Init(void){
   BSP_Clock_InitFastest();// set processor clock to fastest speed
   // initialize any global variables as needed
   //***YOU IMPLEMENT THIS FUNCTION*****
-  OS_MailBox_Init();
+ 
   
 
 }

@@ -485,6 +485,7 @@ int main_step4(void){
   OS_InitSemaphore(&LCDmutex, 1); // 1 means free
   OS_MailBox_Init();              // initialize mailbox used to send data between Task1 and Task2
 // Tasks 0, 1 will not run
+  
 // Task2, Task3, Task4, Task5 are main threads
 // Tasks 2 and 5 will stall
   OS_AddThreads(&Task2, &Task3, &Task4, &Task5);
